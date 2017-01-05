@@ -15,6 +15,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
+        
         return Clientes::paginate();
     }
 
@@ -26,7 +27,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -37,7 +38,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-         return Ejecutivos::find($id);
+        
+        return Clientes::with('Ejecutivo','Estado','Pais')->find($id);
     }
 
     /**

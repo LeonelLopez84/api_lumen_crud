@@ -81,8 +81,10 @@ $app->singleton(
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+  
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);	
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

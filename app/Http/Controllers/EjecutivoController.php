@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
 use App\Entities\Ejecutivos as Ejecutivos;
 use Illuminate\Http\Request;
 
 class EjecutivoController extends Controller
 {
+    use Helpers;
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +28,15 @@ class EjecutivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ejecutivo=new Ejecutivos;
+        $ejecutivo->Nombre=$request->input('Nombre');
+        $ejecutivo->ApellidoPaterno=$request->input('ApellidoPaterno');
+        $ejecutivo->ApellidoMaterno=$request->input('ApellidoMaterno');
+        if($ejecutivo->save()){
+            return response()->json($ejecutivo);
+        }else{
+            return response()->json("Error");
+        }
     }
 
     /**
@@ -37,7 +47,9 @@ class EjecutivoController extends Controller
      */
     public function show($id)
     {
-        return Ejecutivos::find($id);
+        $ejecutivo=Ejecutivos::findOrFail($id);
+
+        return response()->json($ejecutivo);
     }
 
     /**
@@ -49,7 +61,15 @@ class EjecutivoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ejecutivo=Ejecutivos::find($id);
+        $ejecutivo->Nombre=$request->input('Nombre');
+        $ejecutivo->ApellidoPaterno=$request->input('ApellidoPaterno');
+        $ejecutivo->ApellidoMaterno=$request->input('ApellidoMaterno');
+        if($ejecutivo->save()){
+            return response()->json($ejecutivo);
+        }else{
+            return response()->json("Error");
+        }
     }
 
     /**
@@ -60,6 +80,12 @@ class EjecutivoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ejecutivo=Ejecutivos::where('ID','=',$id);
+        if($ejecutivo->delete()){
+            return response()->json(["borrado"]);
+        }else{
+            return response()->json($ejecutivo);
+        }
+       
     }
 }

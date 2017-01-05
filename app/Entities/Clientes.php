@@ -9,17 +9,17 @@ class Clientes extends Model
     protected $table = 'clientes';
     public $timestamps = false;
 
-    public function getEjecutivo()
+    public function Ejecutivo()
     {
         return $this->belongsTo('App\Entities\Ejecutivos','EjecutivoAtiende','ID');
     }
 
-    public function getEstado()
+    public function Estado()
     {
         return $this->belongsTo('App\Entities\Estados','Estado','ID');
     }
 
-    public function getPais()
+    public function Pais()
     {
         return $this->belongsTo('App\Entities\Pais','Pais','ID');
     }
