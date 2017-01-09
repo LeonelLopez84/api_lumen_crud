@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class EjecutivoController extends Controller
 {
     use Helpers;
+
+    public function __construct()
+    {
+       $this->middleware('oauth',['except'=>['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
